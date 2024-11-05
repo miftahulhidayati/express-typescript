@@ -1,0 +1,30 @@
+version: '3'
+services:
+    express-typescript-2024:
+        build:
+            context: .
+            dockerfile: local.Dockerfile
+        container_name: 'app-express-typescript'
+        volumes:
+            - .:/usr/src/app/
+        working_dir: /usr/src/app
+        environment:
+            - REDIS_HOST=redis
+            - GOOGLE_ID=
+            - GOOGLE_SECRET=
+            - TWITTER_KEY=
+            - TWITTER_SECRET=
+        command: sh -c "npm install && npm run dev"
+        ports:
+            - 8080:8080
+            - 5550:5550
+    redis:
+        image: redis
+        container_name: redis
+        command: redis-server --requirepass ${REDIS_PASSWORD}
+        environment:
+            REDIS_PASSWORD: ${REDIS_PASSWORD}
+        ports:
+            - 6379:6379
+        volumes:
+            - ./redis/data:/data
