@@ -20,3 +20,4 @@ EXPOSE 8080
 
 # Start the app
 CMD npm run start
+CMD ["node", "dist/common/scheduler/scheduler.js"]

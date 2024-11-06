@@ -1,6 +1,6 @@
 version: '3'
 services:
-    express-typescript-2024:
+    express-typescript:
         build:
             context: .
             dockerfile: local.Dockerfile
